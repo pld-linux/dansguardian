@@ -1,4 +1,4 @@
-# TODO: pl summary & desc
+# TODO: pl summary & desc, logrotate. NFY
 Summary:	Content filtering web proxy
 Name:		dansguardian
 Version:	2.8.0.4
@@ -44,7 +44,7 @@ filtering.
 	--runas_usr="nobody" \
 	--runas_grp="nobody"
 
-%{__make}
+%{__make} "libdir=/usr/%{_lib}/"
 
 %install
 rm -rf $RPM_BUILD_ROOT
