@@ -19,6 +19,8 @@ PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		cgidir		/home/services/httpd/cgi-bin
+
 %description
 DansGuardian is a web filtering engine that checks the content within
 the page itself in addition to the more traditional URL filtering.
@@ -61,9 +63,10 @@ POST.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/dansguardian \
+	$RPM_BUILD_ROOT%{_sysconfdir}/{dansguardian,httpd/httpd.conf} \
 	$RPM_BUILD_ROOT%{_datadir}/dansguardian/{languages,phraselists,pics,logrotation} \
-	$RPM_BUILD_ROOT/etc/logrotate.d
+	$RPM_BUILD_ROOT/etc/{rc.d/init.d,logrotate.d} \
+	$RPM_BUILD_ROOT%{cgidir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dansguardian
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
