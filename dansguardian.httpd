@@ -1,0 +1,9 @@
+ScriptAlias /dansguardian/ %{_localstatedir}/www/dansguardian/
+
+<Directory %{_localstatedir}/www/dansguardian/>
+        DirectoryIndex dansguardian.pl
+        Options ExecCGI
+        order deny,allow
+        deny from all
+        allow from 127.0.0.1
+</Directory>
