@@ -1,5 +1,6 @@
-# TODO: pl summary & desc, logrotate. NFY
+# TODO: logrotate. NFY
 Summary:	Content filtering web proxy
+Summary(pl):	Proxy WWW filtruj±ce tre¶æ
 Name:		dansguardian
 Version:	2.8.0.4
 Release:	0.1
@@ -14,6 +15,7 @@ Patch1:		%{name}-log.patch
 URL:		http://www.dansguardian.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	zlib-devel
+PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -26,6 +28,15 @@ methods, including URL and domain filtering, content phrase filtering,
 PICS filtering, MIME filtering, file extension filtering, POST
 filtering.
 
+%description -l pl
+DansGuardian to silnik filtrowania WWW sprawdzaj±cy tre¶æ na samych
+stronach oprócz bardziej tradycyjnego filtrowania URL-i.
+
+DansGuardian to proxy filtruj±ce tre¶æ przy u¿yciu wielu metod, w tym
+filtrowania URL-i i domen, fraz zawartych w tre¶ci, filtrowania PICS,
+filtrowania MIME, filtrowania po rozszerzeniach plików, filtrowania
+POST.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -37,22 +48,23 @@ filtering.
 	--cgidir="/home/services/httpd/cgi-bin/" \
 	--installprefix="%{buildroot}" \
 	--logdir="%{_localstatedir}/log/dansguardian/" \
-	--logrotatedir="%{_sysconfdir}/logrotate.d/" \
+	--logrotatedir="/etc/logrotate.d/" \
 	--mandir=%{_mandir}/ \
 	--sysconfdir="%{_sysconfdir}/dansguardian/" \
-	--sysvdir="%{_initrddir}/" \
+	--sysvdir="/etc/rc.d/init.d/" \
 	--runas_usr="nobody" \
 	--runas_grp="nobody"
 
-%{__make} "libdir=/usr/%{_lib}/"
+%{__make} \
+	libdir="/usr/%{_lib}/"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/dansguardian/ \
-	$RPM_BUILD_ROOT%{_datadir}/dansguardian/{languages,phraselists,pics,logrotation}
-install -d -m0755 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
+	$RPM_BUILD_ROOT%{_sysconfdir}/dansguardian \
+	$RPM_BUILD_ROOT%{_datadir}/dansguardian/{languages,phraselists,pics,logrotation} \
+	$RPM_BUILD_ROOT/etc/logrotate.d
+
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dansguardian
 install -D %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
 install -D dansguardian.pl $RPM_BUILD_ROOT/home/services/httpd/cgi-bin/dansguardian.pl
@@ -65,7 +77,10 @@ install transparent1x1.gif $RPM_BUILD_ROOT%{_datadir}/dansguardian/pics/transpar
 cp -r languages $RPM_BUILD_ROOT%{_datadir}/dansguardian
 cp -r phraselists $RPM_BUILD_ROOT%{_datadir}/dansguardian
 install {banned*list,exception*,grey*list,filter*list,weightedphraselist*,contentregexplist} \
-$RPM_BUILD_ROOT%{_sysconfdir}/dansguardian
+	$RPM_BUILD_ROOT%{_sysconfdir}/dansguardian
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add dansguardian
@@ -77,14 +92,11 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-if [ -r /var/lock/subsys/dansguardian ]; then
- /etc/rc.d/init.d/dansguardian stop >&2
+	if [ -r /var/lock/subsys/dansguardian ]; then
+		/etc/rc.d/init.d/dansguardian stop >&2
+	fi
+	/sbin/chkconfig --del dansguardian
 fi
-/sbin/chkconfig --del dansguardian
-fi
-
-%clean
-#%{__rm} -rf %{buildroot}
 
 %files
 %defattr(644,root,root,755)
@@ -94,5 +106,6 @@ fi
 %attr(755,root,root) %{_bindir}/dansguardian
 %attr(755,root,root) /home/services/httpd/cgi-bin/dansguardian.pl
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
+%dir %{_sysconfdir}/dansguardian
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/dansguardian/*
-%attr(640,root,root) %{_datadir}/dansguardian/*
+%{_datadir}/dansguardian
