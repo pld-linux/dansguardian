@@ -65,9 +65,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8} \
 	$RPM_BUILD_ROOT%{_datadir}/dansguardian/{languages,phraselists,pics,logrotation} \
 	$RPM_BUILD_ROOT/etc/logrotate.d
 
-install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dansguardian
-install -D %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
-install -D dansguardian.pl $RPM_BUILD_ROOT/home/services/httpd/cgi-bin/dansguardian.pl
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dansguardian
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
+install dansguardian.pl $RPM_BUILD_ROOT/home/services/httpd/cgi-bin/dansguardian.pl
 install dansguardian.conf $RPM_BUILD_ROOT%{_sysconfdir}/dansguardian/dansguardian.conf
 install dansguardianf1.conf $RPM_BUILD_ROOT%{_sysconfdir}/dansguardian/dansguardianf1.conf
 install pics $RPM_BUILD_ROOT%{_sysconfdir}/dansguardian/pics
