@@ -1,12 +1,12 @@
-%define real_name DansGuardian
-
+# TODO: pl summary & desc
 Summary:	Content filtering web proxy
 Name:		dansguardian
 Version:	2.8.0.4
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
 URL:		http://www.dansguardian.org/
+BuildRequires:	libstdc++-devel
 BuildRequires:	zlib-devel
 Requires(post,preun):	/sbin/chkconfig
 Source0:	http://dansguardian.org/downloads/2/Stable/%{name}-%{version}.source.tar.gz
