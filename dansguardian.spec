@@ -5,16 +5,16 @@ Version:	2.8.0.4
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
-URL:		http://www.dansguardian.org/
-BuildRequires:	libstdc++-devel
-BuildRequires:	zlib-devel
-Requires(post,preun):	/sbin/chkconfig
 Source0:	http://dansguardian.org/downloads/2/Stable/%{name}-%{version}.source.tar.gz
 # Source0-md5:	91d65adf4087a863ad605dddd6e18046
 Source1:	%{name}.init
 Source2:	%{name}.httpd
 Patch0:		%{name}-zlib.patch
 Patch1:		%{name}-log.patch
+URL:		http://www.dansguardian.org/
+BuildRequires:	libstdc++-devel
+BuildRequires:	zlib-devel
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
