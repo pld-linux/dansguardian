@@ -1,0 +1,12 @@
+diff -uNr dansguardian-2.8.0.4.old/autoconf/linux.in dansguardian-2.8.0.4/autoconf/linux.in
+--- dansguardian-2.8.0.4.old/autoconf/linux.in	2005-02-20 16:25:10.000000000 +0100
++++ dansguardian-2.8.0.4/autoconf/linux.in	2005-02-22 11:30:20.247483832 +0100
+@@ -14,7 +14,7 @@
+       HTMLTemplate.o LanguageContainer.o DynamicURLList.o ImageContainer.o \
+       FOptionContainer.o ListManager.o md5.o
+       
+-LIBS = $(libdir)/libz.a
++LIBS = $(libdir)/libz.so
+ PROG = dansguardian
+ INSTALLFILES = dansguardian dansguardian.conf dansguardian.sysv \
+                bannedphraselist exceptionsitelist dansguardian.pl \
