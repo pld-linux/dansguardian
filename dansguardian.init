@@ -2,7 +2,7 @@
 #
 # Startup script for dansguardian
 #
-# chkconfig:	35 92 8
+# chkconfig:	35 92 08
 # description:	A web content filtering plugin for web \
 #		proxies, developed to filter using lists of \
 #		banned phrases, MIME types, filename \
