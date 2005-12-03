@@ -2,16 +2,17 @@
 Summary:	Content filtering web proxy
 Summary(pl):	Proxy WWW filtruj±ce tre¶æ
 Name:		dansguardian
-Version:	2.8.0.4
+Version:	2.8.0.6
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dansguardian.org/downloads/2/Stable/%{name}-%{version}.source.tar.gz
-# Source0-md5:	91d65adf4087a863ad605dddd6e18046
+# Source0-md5:	aa619607198f37a528dbb65e4a503beb
 Source1:	%{name}.init
 Source2:	%{name}.httpd
 Patch0:		%{name}-zlib.patch
 Patch1:		%{name}-log.patch
+Patch2:		%{name}-conf.patch
 URL:		http://www.dansguardian.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	zlib-devel
@@ -43,6 +44,9 @@ POST.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
+
+sed -i 's/\.Include<\$prefixdir\$sysconfdir/\.Include<\$prefixdir\$datadir/g' configure
 
 %build
 ./configure \
@@ -79,8 +83,7 @@ install dansguardian $RPM_BUILD_ROOT%{_bindir}/dansguardian
 install transparent1x1.gif $RPM_BUILD_ROOT%{_datadir}/dansguardian/pics/transparent1x1.gif
 cp -r languages $RPM_BUILD_ROOT%{_datadir}/dansguardian
 cp -r phraselists $RPM_BUILD_ROOT%{_datadir}/dansguardian
-install {banned*list,exception*,grey*list,filter*list,weightedphraselist*,contentregexplist} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/dansguardian
+install *list $RPM_BUILD_ROOT%{_sysconfdir}/dansguardian
 
 %clean
 rm -rf $RPM_BUILD_ROOT
