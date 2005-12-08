@@ -23,11 +23,11 @@ function wait_for_pid()
 {
     local PID=$1
     local RET=0
-    
+
     if [ $PID -eq 0 ] ; then
         return $RET
     fi
-    
+
     # give 60 secs then KILL
     local COUNTDOWN=60
 
@@ -42,7 +42,7 @@ function wait_for_pid()
         kill -KILL $PID >/dev/null 2>&1
         RET=1
     fi
-    
+
     return $RET
 }
 
