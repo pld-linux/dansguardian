@@ -16,7 +16,7 @@ Patch2:		%{name}-conf.patch
 URL:		http://www.dansguardian.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	zlib-devel
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,7 +52,7 @@ sed -i 's/\.Include<\$prefixdir\$sysconfdir/\.Include<\$prefixdir\$datadir/g' co
 ./configure \
 	--bindir="%{_bindir}/" \
 	--cgidir="/home/services/httpd/cgi-bin/" \
-	--installprefix="%{buildroot}" \
+	--installprefix="$RPM_BUILD_ROOT" \
 	--logdir="%{_localstatedir}/log/dansguardian/" \
 	--logrotatedir="/etc/logrotate.d/" \
 	--mandir=%{_mandir}/ \
@@ -111,7 +111,7 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/dansguardian
 %attr(755,root,root) %{_bindir}/dansguardian
 %attr(755,root,root) /home/services/httpd/cgi-bin/dansguardian.pl
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd/httpd.conf/dansguardian.conf
 %dir %{_sysconfdir}/dansguardian
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/dansguardian/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dansguardian/*
 %{_datadir}/dansguardian
