@@ -1,6 +1,6 @@
 # TODO: logrotate. NFY
 Summary:	Content filtering web proxy
-Summary(pl):	Proxy WWW filtruj±ce tre¶æ
+Summary(pl.UTF-8):   Proxy WWW filtrujÄ…ce treÅ›Ä‡
 Name:		dansguardian
 Version:	2.8.0.6
 Release:	0.1
@@ -31,13 +31,13 @@ methods, including URL and domain filtering, content phrase filtering,
 PICS filtering, MIME filtering, file extension filtering, POST
 filtering.
 
-%description -l pl
-DansGuardian to silnik filtrowania WWW sprawdzaj±cy tre¶æ na samych
-stronach oprócz bardziej tradycyjnego filtrowania URL-i.
+%description -l pl.UTF-8
+DansGuardian to silnik filtrowania WWW sprawdzajÄ…cy treÅ›Ä‡ na samych
+stronach oprÃ³cz bardziej tradycyjnego filtrowania URL-i.
 
-DansGuardian to proxy filtruj±ce tre¶æ przy u¿yciu wielu metod, w tym
-filtrowania URL-i i domen, fraz zawartych w tre¶ci, filtrowania PICS,
-filtrowania MIME, filtrowania po rozszerzeniach plików, filtrowania
+DansGuardian to proxy filtrujÄ…ce treÅ›Ä‡ przy uÅ¼yciu wielu metod, w tym
+filtrowania URL-i i domen, fraz zawartych w treÅ›ci, filtrowania PICS,
+filtrowania MIME, filtrowania po rozszerzeniach plikÃ³w, filtrowania
 POST.
 
 %prep
