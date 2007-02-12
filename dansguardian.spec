@@ -1,6 +1,6 @@
 # TODO: logrotate. NFY
 Summary:	Content filtering web proxy
-Summary(pl.UTF-8):   Proxy WWW filtrujące treść
+Summary(pl.UTF-8):	Proxy WWW filtrujące treść
 Name:		dansguardian
 Version:	2.8.0.6
 Release:	0.1
