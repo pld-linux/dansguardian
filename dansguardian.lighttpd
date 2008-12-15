@@ -1,0 +1,4 @@
+alias.url += (
+    "/dansguardian" => "/usr/share/dansguardian",
+)
+
