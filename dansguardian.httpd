@@ -1,6 +1,6 @@
-ScriptAlias /dansguardian/ %{_localstatedir}/www/dansguardian/
+ScriptAlias /dansguardian/ /usr/share/dansguardian/
 
-<Directory %{_localstatedir}/www/dansguardian/>
+<Directory /usr/share/dansguardian/>
         DirectoryIndex dansguardian.pl
         Options ExecCGI
         order deny,allow
