@@ -20,9 +20,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 1.304
 BuildRequires:	zlib-devel
 Requires:	webapps
-
 Requires:	rc-scripts
-
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -118,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add dansguardian
-%service dansguardian restart "Dansguardian daemon"
+%service dansguardian restart "DansGuardian daemon"
 
 %preun
 if [ "$1" = "0" ]; then
