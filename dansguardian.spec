@@ -12,9 +12,6 @@ Source1:	%{name}.init
 Source2:	%{name}.httpd
 Source3:	%{name}.lighttpd
 Source4:	%{name}.logrotate
-Patch0:		%{name}-zlib.patch
-Patch1:		%{name}-log.patch
-Patch2:		%{name}-conf.patch
 URL:		http://www.dansguardian.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
