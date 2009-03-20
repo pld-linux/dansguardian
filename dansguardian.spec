@@ -2,12 +2,12 @@
 Summary:	Content filtering web proxy
 Summary(pl.UTF-8):	Proxy WWW filtrujące treść
 Name:		dansguardian
-Version:	2.10.0.2
+Version:	2.10.0.3
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dansguardian.org/downloads/2/Stable/%{name}-%{version}.tar.gz
-# Source0-md5:	0a6c6d35c9e0c82fbc4a2150e8ffe977
+# Source0-md5:	68c8e9a97a3b58d2467a19cb15db5599
 Source1:	%{name}.init
 Source2:	%{name}.httpd
 Source3:	%{name}.lighttpd
