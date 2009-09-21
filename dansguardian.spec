@@ -16,7 +16,6 @@ Patch0:		gcc.patch
 URL:		http://www.dansguardian.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	clamav-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.304
