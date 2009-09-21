@@ -2,16 +2,17 @@
 Summary:	Content filtering web proxy
 Summary(pl.UTF-8):	Proxy WWW filtrujące treść
 Name:		dansguardian
-Version:	2.10.0.3
+Version:	2.10.1.1
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dansguardian.org/downloads/2/Stable/%{name}-%{version}.tar.gz
-# Source0-md5:	68c8e9a97a3b58d2467a19cb15db5599
+# Source0-md5:	0987a1c9bfbdf398118386f10279611a
 Source1:	%{name}.init
 Source2:	%{name}.httpd
 Source3:	%{name}.lighttpd
 Source4:	%{name}.logrotate
+Patch0:		gcc.patch
 URL:		http://www.dansguardian.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,7 +51,7 @@ POST.
 
 %prep
 %setup -q
-
+%patch0 -p1
 %build
 %{__aclocal}
 %{__autoconf}
@@ -60,7 +61,7 @@ POST.
 %configure \
 	--enable-pcre \
 	--enable-lfs \
-	--enable-clamav \
+	--enable-clamav=no \
 	--enable-clamd \
 	--enable-icap \
 	--enable-kavd \
